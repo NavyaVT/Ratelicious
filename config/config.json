@@ -1,0 +1,27 @@
+{
+  "development": {
+    "username": "admin",
+    "password": "In8ij9nC8c7CPdxxHHxDyApTiUagLPsy",
+    "database": "food_db_5l09",
+    "host": "dpg-cua7oba3esus73ekmd3g-a.singapore-postgres.render.com",
+    "dialect": "postgres",
+    "port": 5432,
+    "dialectOptions": {
+      "ssl": true
+    }
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
