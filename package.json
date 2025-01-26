@@ -2,9 +2,10 @@
   "name": "food-review",
   "version": "0.0.0",
   "private": true,
+  "main": "app.js",
   "scripts": {
     "build": "node app.js",
-    "start": "nodemon ./bin/www --host 10.1.82.72"
+    "start": "node app.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
