@@ -4,7 +4,7 @@
   "private": true,
   "main": "app.js",
   "scripts": {
-    "build": "npm install",
+    "build": "rm -rf node_modules && npm install",
     "start": "node app.js"
   },
   "dependencies": {
