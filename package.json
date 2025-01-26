@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "build": "node app.js",
     "start": "nodemon ./bin/www --host 10.1.82.72"
   },
   "dependencies": {
