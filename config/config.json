@@ -18,10 +18,10 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "admin",  // Use the correct username for Render
-    "password": "In8ij9nC8c7CPdxxHHxDyApTiUagLPsy", // Use the correct password
-    "database": "food_db_5l09", // Use the correct database name
-    "host": "dpg-cua7oba3esus73ekmd3g-a.singapore-postgres.render.com", // Use the correct host
+    "username": "admin",
+    "password": "In8ij9nC8c7CPdxxHHxDyApTiUagLPsy"
+    "database": "food_db_5l09",
+    "host": "postgresql://admin:In8ij9nC8c7CPdxxHHxDyApTiUagLPsy@dpg-cua7oba3esus73ekmd3g-a/food_db_5l09",
     "dialect": "postgres",
     "port": 5432,
     "dialectOptions": {
