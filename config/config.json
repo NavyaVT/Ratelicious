@@ -19,7 +19,7 @@
   },
   "production": {
     "username": "admin",
-    "password": "In8ij9nC8c7CPdxxHHxDyApTiUagLPsy"
+    "password": "In8ij9nC8c7CPdxxHHxDyApTiUagLPsy",
     "database": "food_db_5l09",
     "host": "postgresql://admin:In8ij9nC8c7CPdxxHHxDyApTiUagLPsy@dpg-cua7oba3esus73ekmd3g-a/food_db_5l09",
     "dialect": "postgres",
