@@ -1,29 +1,31 @@
 const router = require('express').Router()
 var nodemailer = require('nodemailer')
-const Model = require("../models")
-const controller = Model.Player
+const model = require('../models')
+var controller = model.User
+require('dotenv').config();
+
 var smtpTransport = nodemailer.createTransport({
-  service: 'gmail',
+  host: 'smtp.gmail.com',
   auth: {
-    user: 'viewon.foodie@gmail.com',
-    pass: 'KastamanaProject@2024',
+    user: 'rateliciouss@gmail.com',
+    pass: process.env.APP_PASS,
   },
 })
 
-router.post('/otpsend', async (req, res) => {
+router.post('/otpsend/:id', async (req, res) => {
   const {  email } = req.body
-  
-  
+  const { id } = req.params
   const otp1 = Math.floor(100000 + Math.random() * 900000)
+
   await controller.update(
     {otp:otp1},
   {
-    where:{email:email }
+    where:{email:email, id:id }
   }
   )
 
   const mailOptions = {
-    from: 'viewon.foodie@gmail.com',
+    from: 'rateliciouss@gmail.com',
     to: email,
     subject: 'Account Verification Code',
     html: ` <h4>Dear ${email},</h4>
@@ -36,6 +38,7 @@ router.post('/otpsend', async (req, res) => {
     if (error) {
       console.log(error)
     } else {
+      console.log('Email sent:', info.response);
       return res.send(true)
     }
   })

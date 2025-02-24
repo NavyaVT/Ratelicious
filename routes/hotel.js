@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const HotelController = require("../controllers/hotel.controller")
-
-router.post("/create",HotelController.create)
+const middleware = require("../middleware/verify.middleware")
+router.post("/create",middleware.sessionVerify,HotelController.create)
 /**
  * @openapi
  * /hotel/create:
@@ -39,7 +39,7 @@ router.post("/create",HotelController.create)
  *       500:
  *         description: Internal server error
  */
-router.get("/view/:id",HotelController.view)
+router.get("/view/:id",middleware.verifyUser,HotelController.view)
 /**
  * @openapi
  * /hotel/view/{id}:
@@ -74,7 +74,7 @@ router.get("/viewAll",HotelController.viewAll)
  *       500:
  *         description: Internal server error
  */
-router.put("/update/:id",HotelController.update)
+router.put("/update/:id",middleware.verifyUser,HotelController.update)
 /**
  * @openapi
  * /hotel/update/{id}:
@@ -96,10 +96,6 @@ router.put("/update/:id",HotelController.update)
  *               email:
  *                 type: string
  *                 default: change@gmail.com
- *               password:
- *                 type: string
- *           required:
- *              - password
  *     responses:
  *       200:
  *         description: Update successful
@@ -108,7 +104,7 @@ router.put("/update/:id",HotelController.update)
  *       500:
  *         description: Internal server error
  */
-router.delete("/delete/:id",HotelController.deleteHotel)
+router.delete("/delete/:id",middleware.verifyUser,HotelController.deleteHotel)
 /**
  * @openapi
  * /hotel/delete/{id}:
@@ -134,6 +130,26 @@ router.delete("/delete/:id",HotelController.deleteHotel)
  *     responses:
  *       200:
  *         description: Delete successful
+ *       404:
+ *         description: Hotel not found
+ *       500:
+ *         description: Internal server error
+ */
+router.get("/viewbyowner/:id",middleware.sessionVerify,HotelController.viewByOwner)
+/**
+ * @openapi
+ * /hotel/delete/{id}:
+ *   delete:
+ *     summary: Delete a hotel
+ *     tags: [Hotel]
+ *     parameters:
+ *       - name: ownerId
+ *         in: path
+ *         required: true
+ *         description: ID of the owner
+ *     responses:
+ *       200:
+ *         description: Hotel details
  *       404:
  *         description: Hotel not found
  *       500:

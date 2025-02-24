@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const pictureController = require("../controllers/picture.controller")
+const middleware = require("../middleware/verify.middleware")
 
-router.post("/create",pictureController.create)
+router.post("/create/:hotelId",middleware.verifyUser,pictureController.create)
 /**
  * @openapi
  * /picture/create:
@@ -19,11 +20,11 @@ router.post("/create",pictureController.create)
  *               picture:
  *                 type: string
  *                 default: https://picture/image.jpg
- *               hotelId:
- *                 type: integer
- *                 default: 1
+ *               jwt:
+ *                 type: string
+ *                 default: token
  *             required:
- *               - url
+ *               - jwt
  *               - hotelId
  *     responses:
  *       200:

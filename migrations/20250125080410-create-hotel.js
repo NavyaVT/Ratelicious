@@ -21,8 +21,8 @@ module.exports = {
       phoneNo: {
         type: Sequelize.STRING
       },
-      password: {
-        type: Sequelize.STRING
+      ownerId: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

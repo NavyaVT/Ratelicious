@@ -15,6 +15,9 @@ module.exports = {
       hotelId: {
         type: Sequelize.INTEGER
       },
+      ownerId: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

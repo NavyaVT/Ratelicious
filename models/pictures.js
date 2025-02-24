@@ -13,12 +13,17 @@ module.exports = (sequelize, DataTypes) => {
       Pictures.belongsTo(models.Hotel, {
         foreignKey : 'hotelId',
         onDelete : "CASCADE"
+      }),
+      Pictures.belongsTo(models.User, {
+        foreignKey : 'ownerId',
+        onDelete : "CASCADE"
       })
     }
   }
   Pictures.init({
     picture: DataTypes.TEXT,
-    hotelId: DataTypes.INTEGER
+    hotelId: DataTypes.INTEGER,
+    ownerId: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Pictures',

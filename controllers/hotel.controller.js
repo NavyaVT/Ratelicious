@@ -1,10 +1,6 @@
 const model = require("../models")
 const hotelController = model.Hotel
-const { Op } = require("sequelize");
-
-
-var jwt = require('jsonwebtoken')
-const secret = '7380619425'
+const { Op, where } = require("sequelize");
 
 const create = async (req, res) => {
     try {
@@ -93,10 +89,9 @@ const viewAll = async (req, res) => {
 const update = async (req, res) => {
     try {
         const { id } = req.params
-        const password = req.body.password
         const data = req.body
         const [updateCount] = await hotelController.update(data, {
-            where: { id: id, password: password}
+            where: { id: id }
         })
         if (updateCount == 0) {
             res.json({
@@ -119,9 +114,8 @@ const update = async (req, res) => {
 const deleteHotel = async (req, res) => {
     try {
         const { id } = req.params
-        const password = req.body.password
         const del = await hotelController.destroy({
-            where: { id: id, password: password }
+            where: { id: id }
         })
         if (del == 0) {
             res.json({
@@ -137,6 +131,30 @@ const deleteHotel = async (req, res) => {
     } catch (err) {
         res.json({
             status: 500,
+            message: err.message
+        })
+    }
+}
+const viewByOwner = async(req,res) => {
+    try{
+        const {ownerId} = req.params
+        const data = await hotelController.findAll({
+            where:{ownerId:ownerId}
+        })
+        if(data == 0) {
+            res.json({
+                status:404,
+                message:"No hotels found"
+            })
+        } else {
+            res.json({
+                status:200,
+                message:data
+            })
+        }
+    } catch (err) {
+        res.json({
+            status:500,
             message: err.message
         })
     }
@@ -181,6 +199,7 @@ module.exports = {
     create,
     view,
     viewAll,
+    viewByOwner,
     update,
     deleteHotel,
     findHotel

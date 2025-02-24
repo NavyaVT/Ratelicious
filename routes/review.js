@@ -1,8 +1,9 @@
 const express = require("express")
 const router = express.Router()
 const reviewController = require("../controllers/review.controller")
+const middleware = require("../middleware/verify.middleware")
 
-router.post("/create/:hotelId",reviewController.create)
+router.post("/create/:hotelId",middleware.verifyUser,reviewController.create)
 /**
  * @openapi
  * /review/create/{hotelId}:
@@ -27,8 +28,12 @@ router.post("/create/:hotelId",reviewController.create)
  *               review:
  *                 type: string
  *                 default: Good One
+ *               jwt:
+ *                 type: string
+ *                 default: token
  *             required:
  *               - rating
+ *               - jwt
  *     responses:
  *       200:
  *         description: Review created successfully
