@@ -3,7 +3,7 @@
     "username": "food_db_19l1_user",
     "password": "Rao6z3eQAdJHsS3z2N5DajiXmKu5IJeN",
     "database": "food_db_19l1",
-    "host": "dpg-cuq7r9q3esus738l9t7g-a.singapore-postgres.render.com",
+    "host": "food_db_19l1_user:Rao6z3eQAdJHsS3z2N5DajiXmKu5IJeN@dpg-cuq7r9q3esus738l9t7g-a/food_db_19l1",
     "dialect": "postgres",
     "port": 5432,
     "dialectOptions": {
